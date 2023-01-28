@@ -1,61 +1,47 @@
-import React, { useState } from 'react';
+import { useState, useEffect} from 'react';
 import BlogList from './BlogList';
 
 const Home = () => {
 
-    const [blogs, setBlogs] = useState([
-        // {title: , age: , cargo: , discipline: , id: },
+    // A const abaixo possui tudo o que aparece na tela. A função está como NULL pois estamos usando o método GET dentro de useEffect() para chamar os dados dentro de data/db.json
+    const [blogs, setBlogs] = useState(null);
 
-        //Professores
-        {title: 'Diana L.', age: '29 anos', cargo: 'professor', discipline: 'Geografia', id: 101},
-        {title: 'Jean S.', age: '27 anos', cargo: 'professor', discipline: 'História', id: 102},
-        {title: 'Juliana M.', age: '36 anos', cargo: 'professor', discipline: 'Sociologia', id: 103},
+    // A função abaixo é para aparecer a mensagem "Carregando..." enquanto a página utiliza o método GET para mostrar os dados.
+    const [isLoading, setIsLoading] = useState(true);
 
-        // Estudantes
-        {title: 'David M.', age: '17', cargo: 'aluno', discipline: 'Estudantes' , id: 201},
-        {title: 'João P.', age: '18', cargo: 'aluno', discipline: 'Estudantes' , id: 202},
-        {title: 'Marcos D.', age: '14', cargo: 'aluno', discipline: 'Estudantes' , id: 203},
-
-        // Funcionários
-        {title: 'Mauricio J.', age: '33 anos', cargo: 'funcionario', discipline: 'Coordenação Escolar', id: 301},
-        {title: 'José A.', age: '40 anos', cargo: 'funcionario', discipline: 'Coordenação Escolar', id: 302},
-        {title: 'Juliana M.', age: '26 anos', cargo: 'funcionario', discipline: 'Coordenação Escolar', id: 303},
-        {title: 'Marcelo R.', age: '21 anos', cargo: 'funcionario', discipline: 'Limpeza & Organização', id: 304},
-        {title: 'Guilherme T.', age: '29 anos', cargo: 'funcionario', discipline: 'Limpeza & Organização', id: 305},
-        {title: 'João V.', age: '35 anos', cargo: 'funcionario', discipline: 'Limpeza & Organização', id: 306},
-
-        // Matérias
-        {title: 'Língua Portuguesa', cargo: 'materia', discipline: 'Língua Portuguesa', id: 401},
-        {title: 'Matemática', cargo: 'materia', discipline: 'Matemática', id: 402},
-        {title: 'Química', cargo: 'materia', discipline: 'Química', id: 403},
-        {title: 'Física', cargo: 'materia', discipline: 'Física', id: 404},
-        {title: 'Biologia', cargo: 'materia', discipline: 'Biologia', id: 405},
-        {title: 'Geografia', cargo: 'materia', discipline: 'Geografia', id: 406},
-        {title: 'História', cargo: 'materia', discipline: 'História', id: 407},
-        {title: 'Sociologia', cargo: 'materia', discipline: 'Sociologia', id: 408},
-        {title: 'Filosofia', cargo: 'materia', discipline: 'Filosofia', id: 409},
-        
-
-    ]);
-
-    const handleDelete = (id) => {
-        const newBlogs = blogs.filter(blog => blog.id !== id);
-        setBlogs(newBlogs);
-    }
+    // A função abaixo é rodada toda vez que a página for atualizada. É bom para pegar dados (GET/FETCH)
+    useEffect(() => {
+        fetch('http://localhost:8000/corpoescolar')
+            .then(responseObj => {
+                return responseObj.json();
+            })
+            .then(data => {
+                setBlogs(data);
+                // Quando a página conseguir recuperar os dados a função abaixo fará com que a mensagem "Carregando..." desapareça
+                setIsLoading(false);
+            })
+            .catch(err => {
+                console.log(err.message);
+            })
+    }, []);
+    // A array vazia acima impede que entre em um loop infinito, ou seja, a função toda só é lançada uma vez e não toda vez que as informações dentro de setBlogs mudar.
 
     return ( 
         <div className="home">
-            {/* <BlogList blogs={blogs} title="Corpo Institucional" handleDelete={handleDelete} /> */}
 
-            <BlogList blogs={blogs.filter((blog) => blog.cargo !== 'materia')} title='Corpo Escolar' handleDelete={handleDelete}/>
+            {/* Por conta da função useSate() estar com NULL e a função useEffect() não carregar de forma síncrona, é necessário adicionar && para que funcione, pois se "blogs" for falso, então não irá carrehar a página. Ou seja, dessa forma o arquivo só aparecerá na tela quando "blogs" for verdadeiro. */}
 
-            <BlogList blogs={blogs.filter((blog) => blog.cargo === 'professor')} title='Corpo Docente' handleDelete={handleDelete} />
+            {isLoading && <div>Carregando...</div>}
 
-            <BlogList blogs={blogs.filter((blog) => blog.cargo === 'aluno')} title='Corpo Discente' handleDelete={handleDelete} />
+            {blogs && <BlogList blogs={blogs.filter((blog) => blog.cargo !== 'materia')} title='Corpo Escolar' />}
 
-            <BlogList blogs={blogs.filter((blog) => blog.cargo === 'funcionario')} title='Corpo Institucional' handleDelete={handleDelete} />
+            {blogs && <BlogList blogs={blogs.filter((blog) => blog.cargo === 'professor')} title='Corpo Docente' />}
 
-            <BlogList blogs={blogs.filter((blog) => blog.cargo === 'materia')} title='Matérias Escolares' handleDelete={handleDelete} />
+            {blogs && <BlogList blogs={blogs.filter((blog) => blog.cargo === 'aluno')} title='Corpo Discente' />}
+
+            {blogs && <BlogList blogs={blogs.filter((blog) => blog.cargo === 'funcionario')} title='Corpo Institucional' />}
+
+            {blogs && <BlogList blogs={blogs.filter((blog) => blog.cargo === 'materia')} title='Matérias Escolares' />}
         </div>
      );
 }
