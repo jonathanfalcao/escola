@@ -11,8 +11,7 @@ const BlogList = ({blogs, title}) => {
                         <h2>{blog.title}</h2>
                         <p>{blog.age}</p>
                         <p>Departamento de {blog.discipline}</p><br/>
-                    </div>
-                    
+                    </div> 
                 ))}
             </div>
         </div>
