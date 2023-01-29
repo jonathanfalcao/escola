@@ -1,6 +1,4 @@
 const BlogList = ({blogs, title}) => {
-    // const blogs = props.blogs;
-    // const title = props.title;
 
     return ( 
         <div className="blog-list">
@@ -11,7 +9,8 @@ const BlogList = ({blogs, title}) => {
                         <h2>{blog.title}</h2>
                         <p>{blog.age}</p>
                         <p>Departamento de {blog.discipline}</p><br/>
-                    </div> 
+                        <button>X</button>
+                    </div>
                 ))}
             </div>
         </div>
