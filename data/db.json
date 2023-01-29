@@ -2,63 +2,63 @@
   "corpoescolar": [
     {
       "title": "Diana L",
-      "age": "29 anos",
+      "age": "29",
       "cargo": "professor",
       "discipline": "Geografia",
       "id": 101
     },
     {
       "title": "Jean S.",
-      "age": "27 anos",
+      "age": "27",
       "cargo": "professor",
       "discipline": "História",
       "id": 102
     },
     {
       "title": "Juliana G.",
-      "age": "36 anos",
+      "age": "36",
       "cargo": "professor",
       "discipline": "Sociologia",
       "id": 103
     },
     {
       "title": "Marcos D.",
-      "age": "2° ano",
+      "age": "17",
       "cargo": "aluno",
       "discipline": "Estudantes",
       "id": 201
     },
     {
       "title": "João Pedro S.",
-      "age": "1° ano",
+      "age": "18",
       "cargo": "aluno",
       "discipline": "Estudantes",
       "id": 202
     },
     {
       "title": "Camilo J.",
-      "age": "3° ano",
+      "age": "16",
       "cargo": "aluno",
       "discipline": "Estudantes",
       "id": 203
     },
     {
       "title": "Marcelo R.",
-      "age": "21 anos",
+      "age": "21",
       "cargo": "funcionario",
       "discipline": "Limpeza & Organização",
       "id": 301
     },
     {
       "title": "Guilherme T.",
-      "age": "41 anos",
+      "age": "41",
       "cargo": "funcionario",
       "discipline": "Coordenação Escolar",
       "id": 302
     },
     {
       "title": "João Victor M.",
-      "age": "53 anos",
+      "age": "53",
       "cargo": "funcionario",
       "discipline": "Direção Escolar",
       "id": 303
@@ -87,13 +87,6 @@
       "cargo": "professor",
       "discipline": "Sociologia",
       "id": 404
-    },
-    {
-      "title": "João Pedro dos Santos Mattos Moreira",
-      "age": "20",
-      "cargo": "professor",
-      "discipline": "Sociologia",
-      "id": 405
     }
   ]
 }

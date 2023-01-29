@@ -12,10 +12,10 @@
   align-items: center;
   max-width: 600px;
   margin: 0 auto;
-  border-bottom: 1px solid #f2f2f2;
+  border-bottom: 1px solid #08600E;
 }
 .navbar h1 {
-  color: #f1356d;
+  color:  #08600E;
 }
 .navbar .links {
   margin-left: auto;
@@ -26,7 +26,9 @@
   padding: 6px;
 }
 .navbar a:hover {
-  color: #f1356d;
+  background: #08600E;
+  color: #ddd;
+  border-radius: 10px;
 }
 .content {
   max-width: 600px;
@@ -41,33 +43,27 @@
   border-bottom: 1px solid #fafafa;
 }
 .blog-preview:hover {
-  box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
 }
 .blog-preview h2 {
   font-size: 20px;
-  color: #f1356d;
+  color: #08600E;
   margin-bottom: 8px;
 }
 .blog-preview a{
   text-decoration: none;
 }
 
-/* blog details page */
-.blog-details h2 {
-  font-size: 20px;
-  color: #f1356d;
-  margin-bottom: 10px;
+.blog-preview button {
+  background-color: #08600E;
+  color: #ddd;
+  border: none; 
 }
-.blog-details div {
-  margin: 20px 0;
-}
-.blog-details button {
-  background: #f1356d;
-  color: #fff;
-  border: 0;
-  padding: 8px;
-  border-radius: 8px;
-  cursor: pointer;
+
+.blog-preview button:hover {
+  background-color: #333;
+  color: red;
+  box-shadow: 1px 3px 5px rgba(13, 44, 24);
 }
 
 /* create new blog form */
@@ -82,7 +78,7 @@
 }
 .create h2 {
   font-size: 20px;
-  color: #f1356d;
+  color: #08600E;
   margin-bottom: 30px;
 }
 .create input, .create textarea, .create select {
@@ -94,7 +90,7 @@
   display: block;
 }
 .create button {
-  background: #f1356d;
+  background: #08600E;
   color: #fff;
   border: 0;
   padding: 8px;
